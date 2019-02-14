@@ -21,7 +21,7 @@ node {
         sh "docker push ${imageName}"
 
     stage('Run kubectl') {
-      container('jenkins') {
+      container('kubectl') {
         sh "kubectl get pods"
       }
     }
