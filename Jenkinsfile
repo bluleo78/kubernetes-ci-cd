@@ -20,6 +20,12 @@ node {
 
         sh "docker push ${imageName}"
 
+    stage('Run kubectl') {
+      container('jenkins') {
+        sh "kubectl get pods"
+      }
+    }
+
     stage "Deploy"
 
         kubernetesDeploy configs: "applications/${appName}/k8s/*.yaml", kubeconfigId: 'kenzan_kubeconfig'
